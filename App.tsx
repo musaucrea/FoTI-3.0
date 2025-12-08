@@ -21,13 +21,22 @@ import {
   Clock,
   Star,
   CheckCircle,
-  MessageSquare
+  MessageSquare,
+  DollarSign,
+  BarChart3,
+  Plus,
+  Settings,
+  LogOut,
+  Lock,
+  Mail,
+  User
 } from 'lucide-react';
 
 const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('HOME');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedTour, setSelectedTour] = useState<Tour | null>(null);
+  const [user, setUser] = useState<{name: string, email: string} | null>(null);
 
   const handleNav = (target: ViewState) => {
     setView(target);
@@ -44,14 +53,14 @@ const App: React.FC = () => {
     <>
       {/* Hero */}
       <div className="relative h-[600px] flex items-center justify-center text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-black/50 z-10" />
         <div 
           className="absolute inset-0 bg-cover bg-center z-0 scale-105 animate-[pulse_30s_ease-in-out_infinite]"
           style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-4.0.3&auto=format&fit=crop&w=2068&q=80")' }}
         />
         <div className="relative z-20 text-center max-w-4xl px-4">
-          <div className="inline-block bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-full px-4 py-1 mb-6">
-            <span className="text-emerald-300 font-semibold tracking-wider text-sm uppercase">Reimagining Tourism Education</span>
+          <div className="inline-block bg-red-500/30 backdrop-blur-sm border border-red-400/30 rounded-full px-4 py-1 mb-6">
+            <span className="text-red-100 font-semibold tracking-wider text-sm uppercase">Limitless Opportunities</span>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold font-serif mb-6 leading-tight">
             Learn by Doing. <br/> Earn by Creating.
@@ -62,7 +71,7 @@ const App: React.FC = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button 
               onClick={() => handleNav('TOURS')}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full font-semibold transition-all transform hover:scale-105 flex items-center"
+              className="bg-red-800 hover:bg-red-900 text-white px-8 py-4 rounded-full font-semibold transition-all transform hover:scale-105 flex items-center"
             >
               Explore Tours <ArrowRight className="ml-2 w-5 h-5" />
             </button>
@@ -90,17 +99,17 @@ const App: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               { 
-                icon: <Briefcase className="w-8 h-8 text-emerald-600" />, 
+                icon: <Briefcase className="w-8 h-8 text-red-800" />, 
                 title: "Business Operations", 
                 desc: "Students manage live tourism products under supervision, generating revenue to fund their studies." 
               },
               { 
-                icon: <TrendingUp className="w-8 h-8 text-blue-600" />, 
+                icon: <TrendingUp className="w-8 h-8 text-sky-700" />, 
                 title: "Research & Development", 
                 desc: "Real-world data leads to documentary evidence and peer-reviewed publications in the FoTI Journal." 
               },
               { 
-                icon: <Award className="w-8 h-8 text-yellow-600" />, 
+                icon: <Award className="w-8 h-8 text-green-700" />, 
                 title: "Career Acceleration", 
                 desc: "Graduates transition to our 'Travel Agency for Hire' platform or join the FoTI Think Tank." 
               }
@@ -125,7 +134,7 @@ const App: React.FC = () => {
               <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">Featured Student Tours</h2>
               <p className="text-gray-500">Support student research by booking these unique experiences.</p>
             </div>
-            <button onClick={() => handleNav('TOURS')} className="text-emerald-600 font-semibold hover:text-emerald-700 hidden md:flex items-center">
+            <button onClick={() => handleNav('TOURS')} className="text-sky-700 font-semibold hover:text-sky-800 hidden md:flex items-center">
               View All <ArrowRight className="w-4 h-4 ml-1" />
             </button>
           </div>
@@ -140,22 +149,22 @@ const App: React.FC = () => {
             ))}
           </div>
           <div className="mt-8 text-center md:hidden">
-            <button onClick={() => handleNav('TOURS')} className="text-emerald-600 font-semibold">View All Tours</button>
+            <button onClick={() => handleNav('TOURS')} className="text-sky-700 font-semibold">View All Tours</button>
           </div>
         </div>
       </section>
 
       {/* Call to Action - Talent */}
-      <section className="py-20 bg-emerald-900 text-white relative overflow-hidden">
+      <section className="py-20 bg-red-950 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pattern-dots" /> 
         <div className="container mx-auto px-4 relative z-10 text-center">
           <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">Looking for Talent?</h2>
-          <p className="text-xl text-emerald-100 max-w-2xl mx-auto mb-10">
+          <p className="text-xl text-red-100 max-w-2xl mx-auto mb-10">
             Our graduates are not just students; they are experienced entrepreneurs and published researchers.
           </p>
           <button 
             onClick={() => handleNav('STUDENTS')}
-            className="bg-white text-emerald-900 px-8 py-3 rounded-full font-bold hover:bg-emerald-50 transition-colors"
+            className="bg-white text-red-900 px-8 py-3 rounded-full font-bold hover:bg-red-50 transition-colors"
           >
             Access Talent Pool
           </button>
@@ -175,7 +184,7 @@ const App: React.FC = () => {
                 onClick={() => setSelectedTour(null)}
                 className="absolute top-6 left-6 bg-white/90 p-2 rounded-full hover:bg-white transition-colors"
               >
-                <ArrowRight className="w-6 h-6 rotate-180" />
+                <ArrowRight className="w-6 h-6 rotate-180 text-gray-900" />
               </button>
             </div>
             <div className="p-8 md:p-12">
@@ -183,7 +192,7 @@ const App: React.FC = () => {
                 <div className="flex-1">
                   <div className="flex gap-3 mb-4">
                      {selectedTour.tags.map(t => (
-                       <span key={t} className="bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full font-semibold">{t}</span>
+                       <span key={t} className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-semibold">{t}</span>
                      ))}
                   </div>
                   <h1 className="text-4xl font-serif font-bold text-gray-900 mb-4">{selectedTour.title}</h1>
@@ -199,23 +208,23 @@ const App: React.FC = () => {
                   {/* Outputs */}
                   <div className="bg-slate-50 border border-slate-100 rounded-xl p-6 mb-8">
                     <h3 className="font-bold text-gray-900 mb-4 flex items-center">
-                      <Award className="w-5 h-5 mr-2 text-emerald-600" />
+                      <Award className="w-5 h-5 mr-2 text-red-800" />
                       Research Outputs
                     </h3>
                     <div className="space-y-4">
                       <div className="flex items-start">
-                         <PlayCircle className="w-6 h-6 text-red-600 mr-3 mt-1 flex-shrink-0" />
+                         <PlayCircle className="w-6 h-6 text-red-700 mr-3 mt-1 flex-shrink-0" />
                          <div>
                            <p className="font-semibold text-gray-900">Documentary Evidence</p>
-                           <a href={selectedTour.documentaryUrl} className="text-sm text-blue-600 hover:underline">Watch: Behind the Scenes of {selectedTour.location} Research</a>
+                           <a href={selectedTour.documentaryUrl} className="text-sm text-sky-700 hover:underline">Watch: Behind the Scenes of {selectedTour.location} Research</a>
                          </div>
                       </div>
                       <div className="flex items-start">
-                         <FileText className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
+                         <FileText className="w-6 h-6 text-sky-700 mr-3 mt-1 flex-shrink-0" />
                          <div>
                            <p className="font-semibold text-gray-900">Academic Publication</p>
                            <p className="text-sm text-gray-600 italic">"{selectedTour.paperTitle}"</p>
-                           <a href="#" className="text-xs text-blue-600 hover:underline">Read in FoTI Journal</a>
+                           <a href="#" className="text-xs text-sky-700 hover:underline">Read in FoTI Journal</a>
                          </div>
                       </div>
                     </div>
@@ -229,7 +238,7 @@ const App: React.FC = () => {
                     <div className="text-3xl font-bold text-gray-900 mb-2">${selectedTour.price} <span className="text-base font-normal text-gray-500">/ person</span></div>
                     <p className="text-sm text-gray-500 mb-6">Proceeds fund student research.</p>
                     
-                    <button className="w-full bg-emerald-600 text-white py-3 rounded-lg font-bold hover:bg-emerald-700 transition-colors mb-4">
+                    <button className="w-full bg-red-800 text-white py-3 rounded-lg font-bold hover:bg-red-900 transition-colors mb-4">
                       Book Now
                     </button>
                     <button className="w-full bg-slate-100 text-slate-700 py-3 rounded-lg font-bold hover:bg-slate-200 transition-colors">
@@ -294,7 +303,7 @@ const App: React.FC = () => {
               return (
                 <div key={paper.id} className="flex flex-col md:flex-row gap-8 items-start">
                   <div className="md:w-1/4">
-                    <span className="text-sm font-semibold text-emerald-600 uppercase tracking-wider mb-2 block">{paper.category}</span>
+                    <span className="text-sm font-semibold text-sky-700 uppercase tracking-wider mb-2 block">{paper.category}</span>
                     <div className="text-gray-500 text-sm mb-4">{paper.publishDate}</div>
                     {student && (
                       <div className="flex items-center gap-2">
@@ -304,17 +313,17 @@ const App: React.FC = () => {
                     )}
                   </div>
                   <div className="md:w-3/4">
-                    <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3 hover:text-emerald-700 cursor-pointer">
+                    <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3 hover:text-red-800 cursor-pointer">
                       {paper.title}
                     </h3>
                     <p className="text-gray-600 mb-4 leading-relaxed">
                       {paper.abstract}
                     </p>
                     <div className="flex gap-4">
-                      <button className="flex items-center text-sm font-bold text-slate-700 hover:text-emerald-600">
+                      <button className="flex items-center text-sm font-bold text-slate-700 hover:text-sky-700">
                         <FileText className="w-4 h-4 mr-2" /> Download PDF
                       </button>
-                      <button className="flex items-center text-sm font-bold text-slate-700 hover:text-red-600">
+                      <button className="flex items-center text-sm font-bold text-slate-700 hover:text-red-700">
                         <PlayCircle className="w-4 h-4 mr-2" /> Watch Documentary
                       </button>
                     </div>
@@ -339,13 +348,13 @@ const App: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {STUDENTS.map(student => (
             <div key={student.id} className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex flex-col">
-              <div className="h-32 bg-gradient-to-r from-emerald-800 to-emerald-600"></div>
+              <div className="h-32 bg-gradient-to-r from-red-900 to-red-800"></div>
               <div className="px-6 relative flex-1 flex flex-col">
                 <div className="-mt-12 mb-4">
                   <img src={student.avatar} alt={student.name} className="w-24 h-24 rounded-full border-4 border-white shadow-md" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-1">{student.name}</h3>
-                <span className="inline-block bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded mb-4 w-fit">{student.role}</span>
+                <span className="inline-block bg-sky-100 text-sky-800 text-xs px-2 py-1 rounded mb-4 w-fit">{student.role}</span>
                 <p className="text-gray-600 text-sm mb-6 flex-1">{student.bio}</p>
                 <div className="border-t border-gray-100 pt-4 pb-6 mt-auto">
                    <p className="text-xs text-gray-500 uppercase font-bold mb-2">Specialty</p>
@@ -367,10 +376,10 @@ const App: React.FC = () => {
         <div className="container mx-auto px-4 max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8">Career Roadmap</h1>
             
-            <div className="relative border-l-2 border-emerald-200 ml-4 space-y-12 pl-8 py-4">
+            <div className="relative border-l-2 border-red-200 ml-4 space-y-12 pl-8 py-4">
                 <div className="relative">
-                    <span className="absolute -left-[41px] bg-emerald-100 p-2 rounded-full border-2 border-emerald-500">
-                        <GraduationCap className="w-5 h-5 text-emerald-700" />
+                    <span className="absolute -left-[41px] bg-red-100 p-2 rounded-full border-2 border-red-800">
+                        <GraduationCap className="w-5 h-5 text-red-900" />
                     </span>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">1. Undergraduate/Postgraduate Student</h3>
                     <p className="text-gray-600">
@@ -380,8 +389,8 @@ const App: React.FC = () => {
                 </div>
 
                 <div className="relative">
-                    <span className="absolute -left-[41px] bg-emerald-100 p-2 rounded-full border-2 border-emerald-500">
-                        <TrendingUp className="w-5 h-5 text-emerald-700" />
+                    <span className="absolute -left-[41px] bg-red-100 p-2 rounded-full border-2 border-red-800">
+                        <TrendingUp className="w-5 h-5 text-red-900" />
                     </span>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">2. Business Incubation</h3>
                     <p className="text-gray-600">
@@ -391,8 +400,8 @@ const App: React.FC = () => {
                 </div>
 
                 <div className="relative">
-                    <span className="absolute -left-[41px] bg-emerald-100 p-2 rounded-full border-2 border-emerald-500">
-                        <Globe className="w-5 h-5 text-emerald-700" />
+                    <span className="absolute -left-[41px] bg-red-100 p-2 rounded-full border-2 border-red-800">
+                        <Globe className="w-5 h-5 text-red-900" />
                     </span>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">3. Travel Agency for Hire</h3>
                     <p className="text-gray-600">
@@ -402,8 +411,8 @@ const App: React.FC = () => {
                 </div>
 
                 <div className="relative">
-                    <span className="absolute -left-[41px] bg-emerald-100 p-2 rounded-full border-2 border-emerald-500">
-                        <Users className="w-5 h-5 text-emerald-700" />
+                    <span className="absolute -left-[41px] bg-red-100 p-2 rounded-full border-2 border-red-800">
+                        <Users className="w-5 h-5 text-red-900" />
                     </span>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">4. FoTI Think Tank</h3>
                     <p className="text-gray-600">
@@ -438,14 +447,14 @@ const App: React.FC = () => {
       return (
         <div className="pt-32 pb-20 min-h-screen bg-slate-50 flex items-center justify-center">
           <div className="bg-white p-8 rounded-2xl shadow-lg text-center max-w-md mx-4">
-            <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-8 h-8 text-emerald-600" />
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-8 h-8 text-green-700" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h2>
             <p className="text-gray-600 mb-6">Your feedback has been received. We appreciate your contribution to improving FoTI.</p>
             <button 
               onClick={() => { setStatus('IDLE'); setFormData({type: 'Suggestion', name: '', email: '', message: ''}); setView('HOME'); }}
-              className="bg-emerald-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-emerald-700 transition-colors"
+              className="bg-red-800 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-900 transition-colors"
             >
               Return Home
             </button>
@@ -458,9 +467,9 @@ const App: React.FC = () => {
       <div className="pt-24 pb-20 min-h-screen bg-slate-50">
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="bg-emerald-900 p-8 text-white">
+            <div className="bg-red-900 p-8 text-white">
               <h1 className="text-3xl font-serif font-bold mb-2">We Value Your Feedback</h1>
-              <p className="text-emerald-100">Help us improve the FoTI experience for students and travelers alike.</p>
+              <p className="text-red-100">Help us improve the FoTI experience for students and travelers alike.</p>
             </div>
             
             <form onSubmit={handleSubmit} className="p-8 space-y-6">
@@ -474,7 +483,7 @@ const App: React.FC = () => {
                       onClick={() => setFormData({...formData, type})}
                       className={`py-2 px-4 rounded-lg text-sm font-medium transition-all ${
                         formData.type === type 
-                          ? 'bg-emerald-600 text-white ring-2 ring-emerald-600 ring-offset-2' 
+                          ? 'bg-red-800 text-white ring-2 ring-red-800 ring-offset-2' 
                           : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                       }`}
                     >
@@ -491,7 +500,7 @@ const App: React.FC = () => {
                     type="text" 
                     value={formData.name}
                     onChange={e => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
                     placeholder="John Doe"
                   />
                 </div>
@@ -501,7 +510,7 @@ const App: React.FC = () => {
                     type="email" 
                     value={formData.email}
                     onChange={e => setFormData({...formData, email: e.target.value})}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -514,7 +523,7 @@ const App: React.FC = () => {
                   value={formData.message}
                   onChange={e => setFormData({...formData, message: e.target.value})}
                   rows={5}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 transition-all resize-none"
                   placeholder="Tell us about your experience or suggestion..."
                 />
               </div>
@@ -523,7 +532,7 @@ const App: React.FC = () => {
                 <button 
                   type="submit"
                   disabled={!formData.message || status === 'SUBMITTING'}
-                  className="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                  className="w-full bg-red-800 text-white py-4 rounded-xl font-bold text-lg hover:bg-red-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
                 >
                   {status === 'SUBMITTING' ? (
                     <>
@@ -540,8 +549,218 @@ const App: React.FC = () => {
     );
   };
 
+  const LoginView = () => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleLoginSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if(password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+        setIsLoading(true);
+        // Simulate auth delay
+        setTimeout(() => {
+            setUser({ name, email });
+            setIsLoading(false);
+            setView('DASHBOARD');
+        }, 1500);
+    };
+
+    return (
+        <div className="pt-24 min-h-screen bg-slate-50 flex items-center justify-center px-4">
+            <div className="bg-white w-full max-w-md rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                <div className="bg-red-900 p-8 text-center">
+                    <h2 className="text-2xl font-serif font-bold text-white mb-2">Join FoTI</h2>
+                    <p className="text-red-100 text-sm">Create your student entrepreneur account</p>
+                </div>
+                <form onSubmit={handleLoginSubmit} className="p-8 space-y-5">
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                            <User className="w-4 h-4 mr-2 text-gray-400" /> Full Name
+                        </label>
+                        <input 
+                            type="text" 
+                            required
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500"
+                            placeholder="Student Name"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                            <Mail className="w-4 h-4 mr-2 text-gray-400" /> Email Address
+                        </label>
+                        <input 
+                            type="email" 
+                            required
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500"
+                            placeholder="student@university.edu"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center">
+                            <Lock className="w-4 h-4 mr-2 text-gray-400" /> Create Password
+                        </label>
+                        <input 
+                            type="password" 
+                            required
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500"
+                            placeholder="••••••••"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">Confirm Password</label>
+                        <input 
+                            type="password" 
+                            required
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500"
+                            placeholder="••••••••"
+                        />
+                    </div>
+                    <button 
+                        type="submit" 
+                        disabled={isLoading}
+                        className="w-full bg-red-800 text-white py-3 rounded-xl font-bold hover:bg-red-900 transition-colors flex justify-center items-center"
+                    >
+                        {isLoading ? <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> : "Create Account & Dashboard"}
+                    </button>
+                </form>
+                <div className="bg-gray-50 p-4 text-center text-xs text-gray-500 border-t border-gray-100">
+                    Already have an account? <span className="text-red-800 font-bold cursor-pointer">Log in here</span>
+                </div>
+            </div>
+        </div>
+    )
+  }
+
+  const DashboardView = () => (
+      <div className="pt-24 pb-20 min-h-screen bg-gray-50">
+          <div className="container mx-auto px-4">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                  <div>
+                    <h1 className="text-3xl font-serif font-bold text-gray-900">Welcome, {user?.name || 'Student'}</h1>
+                    <p className="text-gray-500">Manage your tourism business and research outputs.</p>
+                  </div>
+                  <div className="flex gap-3">
+                      <button className="flex items-center gap-2 bg-white border border-gray-200 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50 text-gray-700">
+                          <Settings className="w-4 h-4" /> Settings
+                      </button>
+                      <button className="flex items-center gap-2 bg-red-800 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-900">
+                          <Plus className="w-4 h-4" /> New Project
+                      </button>
+                  </div>
+              </div>
+
+              {/* Stats Row */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                  <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                      <div className="flex justify-between items-center mb-4">
+                          <div className="p-3 bg-green-100 rounded-lg"><DollarSign className="w-6 h-6 text-green-700" /></div>
+                          <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+12%</span>
+                      </div>
+                      <p className="text-gray-500 text-sm mb-1">Total Revenue</p>
+                      <h3 className="text-3xl font-bold text-gray-900">$1,250.00</h3>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                      <div className="flex justify-between items-center mb-4">
+                          <div className="p-3 bg-sky-100 rounded-lg"><Users className="w-6 h-6 text-sky-700" /></div>
+                          <span className="text-xs font-bold text-sky-600 bg-sky-50 px-2 py-1 rounded-full">+5 New</span>
+                      </div>
+                      <p className="text-gray-500 text-sm mb-1">Active Bookings</p>
+                      <h3 className="text-3xl font-bold text-gray-900">8</h3>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+                      <div className="flex justify-between items-center mb-4">
+                          <div className="p-3 bg-red-100 rounded-lg"><BookOpen className="w-6 h-6 text-red-800" /></div>
+                          <span className="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded-full">In Progress</span>
+                      </div>
+                      <p className="text-gray-500 text-sm mb-1">Research Status</p>
+                      <h3 className="text-xl font-bold text-gray-900">Drafting Phase</h3>
+                  </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Active Products */}
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                      <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+                          <h3 className="font-bold text-gray-900">My Active Tours</h3>
+                          <button className="text-sm text-red-800 font-semibold hover:underline">View All</button>
+                      </div>
+                      <div className="p-6">
+                          {/* Mock Empty State or Items */}
+                          <div className="flex items-center gap-4 mb-4 p-4 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer">
+                              <img src="https://picsum.photos/id/1018/100/100" className="w-16 h-16 rounded-lg object-cover" alt="Tour" />
+                              <div className="flex-1">
+                                  <h4 className="font-bold text-gray-900 text-sm">Rwanda Eco-Lodge Innovation</h4>
+                                  <p className="text-xs text-gray-500">Next trip: Aug 14, 2024</p>
+                              </div>
+                              <div className="text-right">
+                                  <span className="block font-bold text-gray-900">$1,500</span>
+                                  <span className="text-xs text-green-600">Active</span>
+                              </div>
+                          </div>
+                          <div className="text-center p-4 border-2 border-dashed border-gray-200 rounded-lg text-gray-400 hover:border-red-300 hover:text-red-500 cursor-pointer transition-all">
+                              <Plus className="w-6 h-6 mx-auto mb-2" />
+                              <p className="text-sm font-medium">Launch New Tour Product</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  {/* Research Output Checklist */}
+                  <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                      <div className="p-6 border-b border-gray-100">
+                          <h3 className="font-bold text-gray-900">Academic & Documentary Output</h3>
+                      </div>
+                      <div className="p-6 space-y-4">
+                          <div className="flex items-start gap-3">
+                              <div className="mt-1"><CheckCircle className="w-5 h-5 text-green-600" /></div>
+                              <div>
+                                  <p className="text-sm font-semibold text-gray-900">Project Proposal Approved</p>
+                                  <p className="text-xs text-gray-500">Supervisor: Dr. A. Mwangi</p>
+                              </div>
+                          </div>
+                          <div className="flex items-start gap-3">
+                              <div className="mt-1"><CheckCircle className="w-5 h-5 text-green-600" /></div>
+                              <div>
+                                  <p className="text-sm font-semibold text-gray-900">Business License Acquired</p>
+                                  <p className="text-xs text-gray-500">Tourism Regulatory Authority</p>
+                              </div>
+                          </div>
+                          <div className="flex items-start gap-3">
+                              <div className="mt-1"><div className="w-5 h-5 rounded-full border-2 border-gray-300"></div></div>
+                              <div>
+                                  <p className="text-sm font-semibold text-gray-400">Upload Documentary Footage</p>
+                                  <p className="text-xs text-gray-400">Required: Min 10 mins raw footage</p>
+                              </div>
+                          </div>
+                          <div className="flex items-start gap-3">
+                              <div className="mt-1"><div className="w-5 h-5 rounded-full border-2 border-gray-300"></div></div>
+                              <div>
+                                  <p className="text-sm font-semibold text-gray-400">Submit Final Journal Paper</p>
+                                  <p className="text-xs text-gray-400">Pending Data Collection</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  );
+
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-emerald-200">
+    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-red-100">
       
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
@@ -550,8 +769,9 @@ const App: React.FC = () => {
             onClick={() => handleNav('HOME')}
             className="flex items-center space-x-2 cursor-pointer"
           >
-            <div className="w-10 h-10 bg-emerald-800 rounded-lg flex items-center justify-center text-white font-serif font-bold text-xl">F</div>
-            <span className="text-xl font-bold tracking-tight text-emerald-900">FoTI</span>
+            {/* Logo updated to use Image - Users should place 'logo.png' in public folder */}
+            <img src="/logo.png" alt="FoTI Logo" className="h-12 w-auto object-contain" />
+            <span className="text-xl font-bold tracking-tight text-red-950">FoTI</span>
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
@@ -561,7 +781,7 @@ const App: React.FC = () => {
                     <button 
                         key={item}
                         onClick={() => handleNav(target)}
-                        className={`text-sm font-semibold transition-colors ${view === target ? 'text-emerald-600' : 'text-gray-600 hover:text-emerald-600'}`}
+                        className={`text-sm font-semibold transition-colors ${view === target ? 'text-red-800' : 'text-gray-600 hover:text-red-800'}`}
                     >
                         {item}
                     </button>
@@ -570,10 +790,31 @@ const App: React.FC = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-             <button className="p-2 text-gray-400 hover:text-emerald-600"><Search className="w-5 h-5" /></button>
-             <button className="bg-emerald-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-emerald-800 transition-colors">
-                Login
-             </button>
+             <button className="p-2 text-gray-400 hover:text-red-800"><Search className="w-5 h-5" /></button>
+             {user ? (
+                 <div className="flex items-center gap-3">
+                     <button 
+                        onClick={() => handleNav('DASHBOARD')}
+                        className="text-sm font-bold text-red-900 hover:underline"
+                     >
+                         Dashboard
+                     </button>
+                     <button 
+                        onClick={() => { setUser(null); setView('HOME'); }}
+                        className="p-2 text-gray-500 hover:text-red-800"
+                        title="Logout"
+                     >
+                         <LogOut className="w-5 h-5" />
+                     </button>
+                 </div>
+             ) : (
+                <button 
+                    onClick={() => handleNav('LOGIN')}
+                    className="bg-red-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-red-800 transition-colors"
+                >
+                    Login
+                </button>
+             )}
           </div>
 
           <button className="md:hidden p-2 text-gray-600" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -597,6 +838,13 @@ const App: React.FC = () => {
                             </button>
                          )
                     })}
+                    <div className="border-t border-gray-100 pt-2">
+                        {user ? (
+                            <button onClick={() => handleNav('DASHBOARD')} className="text-left font-bold text-red-900 py-2 w-full">Dashboard</button>
+                        ) : (
+                            <button onClick={() => handleNav('LOGIN')} className="text-left font-bold text-red-900 py-2 w-full">Login</button>
+                        )}
+                    </div>
                  </div>
             </div>
         )}
@@ -609,56 +857,60 @@ const App: React.FC = () => {
         {view === 'STUDENTS' && <StudentView />}
         {view === 'CAREERS' && <AboutView />}
         {view === 'FEEDBACK' && <FeedbackView />}
+        {view === 'LOGIN' && <LoginView />}
+        {view === 'DASHBOARD' && <DashboardView />}
       </main>
 
       <AiAssistant />
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-slate-300 py-12">
-        <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div>
-                    <div className="flex items-center space-x-2 mb-6">
-                        <div className="w-8 h-8 bg-emerald-500 rounded flex items-center justify-center text-white font-serif font-bold">F</div>
-                        <span className="text-xl font-bold text-white">FoTI</span>
+      {view !== 'LOGIN' && view !== 'DASHBOARD' && (
+        <footer className="bg-red-950 text-red-100 py-12">
+            <div className="container mx-auto px-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                    <div>
+                        <div className="flex items-center space-x-2 mb-6">
+                            <img src="/logo.png" alt="FoTI Logo" className="h-10 w-auto object-contain" />
+                            <span className="text-xl font-bold text-white">FoTI</span>
+                        </div>
+                        <p className="text-sm leading-relaxed text-red-200/80">
+                            The Foundations of Tourism Institute bridges the gap between academic theory and business practice, empowering the next generation of African tourism leaders.
+                        </p>
                     </div>
-                    <p className="text-sm leading-relaxed text-slate-400">
-                        The Foundations of Tourism Institute bridges the gap between academic theory and business practice, empowering the next generation of African tourism leaders.
-                    </p>
+                    <div>
+                        <h4 className="text-white font-bold mb-4">Platform</h4>
+                        <ul className="space-y-2 text-sm">
+                            <li><button onClick={() => handleNav('TOURS')} className="hover:text-white transition-colors">Tours Marketplace</button></li>
+                            <li><button onClick={() => handleNav('RESEARCH')} className="hover:text-white transition-colors">Academic Journal</button></li>
+                            <li><button onClick={() => handleNav('STUDENTS')} className="hover:text-white transition-colors">Hire Talent</button></li>
+                            <li><button onClick={() => handleNav('FEEDBACK')} className="hover:text-white transition-colors flex items-center gap-2"><MessageSquare className="w-4 h-4" /> Feedback</button></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold mb-4">Resources</h4>
+                        <ul className="space-y-2 text-sm">
+                            <li><a href="#" className="hover:text-white transition-colors">Student Handbook</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Research Guidelines</a></li>
+                            <li><a href="#" className="hover:text-white transition-colors">Scholarship Portal</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 className="text-white font-bold mb-4">Contact</h4>
+                        <p className="text-sm text-red-200/80 mb-2">Nairobi, Kenya</p>
+                        <p className="text-sm text-red-200/80">info@foti.africa</p>
+                    </div>
                 </div>
-                <div>
-                    <h4 className="text-white font-bold mb-4">Platform</h4>
-                    <ul className="space-y-2 text-sm">
-                        <li><button onClick={() => handleNav('TOURS')} className="hover:text-emerald-400">Tours Marketplace</button></li>
-                        <li><button onClick={() => handleNav('RESEARCH')} className="hover:text-emerald-400">Academic Journal</button></li>
-                        <li><button onClick={() => handleNav('STUDENTS')} className="hover:text-emerald-400">Hire Talent</button></li>
-                        <li><button onClick={() => handleNav('FEEDBACK')} className="hover:text-emerald-400 text-emerald-400 font-semibold flex items-center gap-2"><MessageSquare className="w-4 h-4" /> Feedback</button></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 className="text-white font-bold mb-4">Resources</h4>
-                    <ul className="space-y-2 text-sm">
-                        <li><a href="#" className="hover:text-emerald-400">Student Handbook</a></li>
-                        <li><a href="#" className="hover:text-emerald-400">Research Guidelines</a></li>
-                        <li><a href="#" className="hover:text-emerald-400">Scholarship Portal</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 className="text-white font-bold mb-4">Contact</h4>
-                    <p className="text-sm text-slate-400 mb-2">Nairobi, Kenya</p>
-                    <p className="text-sm text-slate-400">info@foti.africa</p>
-                </div>
-            </div>
-            <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500">
-                <p>&copy; {new Date().getFullYear()} Foundations of Tourism Institute.</p>
-                <div className="flex space-x-6 mt-4 md:mt-0">
-                    <a href="#" className="hover:text-white">Privacy</a>
-                    <a href="#" className="hover:text-white">Terms</a>
-                    <a href="#" className="hover:text-white">Sitemap</a>
+                <div className="border-t border-red-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-red-300/60">
+                    <p>&copy; {new Date().getFullYear()} Foundations of Tourism Institute.</p>
+                    <div className="flex space-x-6 mt-4 md:mt-0">
+                        <a href="#" className="hover:text-white">Privacy</a>
+                        <a href="#" className="hover:text-white">Terms</a>
+                        <a href="#" className="hover:text-white">Sitemap</a>
+                    </div>
                 </div>
             </div>
-        </div>
-      </footer>
+        </footer>
+      )}
     </div>
   );
 };

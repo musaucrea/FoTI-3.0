@@ -32,7 +32,7 @@ export interface ResearchPaper {
   downloadUrl: string;
 }
 
-export type ViewState = 'HOME' | 'TOURS' | 'RESEARCH' | 'CAREERS' | 'STUDENTS' | 'FEEDBACK';
+export type ViewState = 'HOME' | 'TOURS' | 'RESEARCH' | 'CAREERS' | 'STUDENTS' | 'FEEDBACK' | 'LOGIN' | 'DASHBOARD';
 
 export interface ChatMessage {
   role: 'user' | 'model';

@@ -1,8 +1,8 @@
 import { GoogleGenAI } from "@google/genai";
 import { ChatMessage } from "../types";
 
-// Initialize the client. 
-// We use process.env.API_KEY directly as per instructions.
+// Initialize the client.
+// The API key must be obtained exclusively from process.env.API_KEY.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const SYSTEM_INSTRUCTION = `

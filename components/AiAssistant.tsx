@@ -29,14 +29,7 @@ export const AiAssistant: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Pass the *previous* messages (excluding the one we just added locally for optimistic UI if we wanted, 
-      // but here we pass the history excluding the new one to the service, or include it. 
-      // The service expects history. Let's pass the current history state before the update + new message separately logic?
-      // Actually the service in this simple implementation takes history + new message. 
-      // Let's pass the history excluding the *current* user message we just set, because the service sends the new message.
-      
       const responseText = await sendMessageToGemini(messages, userMsg.text);
-      
       setMessages(prev => [...prev, { role: 'model', text: responseText }]);
     } catch (error) {
       setMessages(prev => [...prev, { role: 'model', text: 'Sorry, something went wrong.', isError: true }]);
@@ -62,7 +55,7 @@ export const AiAssistant: React.FC = () => {
         style={{ maxHeight: '600px', height: isOpen ? '500px' : '0' }}
       >
         {/* Header */}
-        <div className="bg-emerald-900 text-white p-4 flex justify-between items-center">
+        <div className="bg-red-900 text-white p-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Sparkles className="w-5 h-5 text-yellow-400" />
             <span className="font-semibold">FoTI Assistant</span>
@@ -85,7 +78,7 @@ export const AiAssistant: React.FC = () => {
               <div 
                 className={`max-w-[85%] rounded-2xl px-4 py-2 text-sm shadow-sm ${
                   msg.role === 'user' 
-                    ? 'bg-emerald-600 text-white rounded-br-none' 
+                    ? 'bg-red-800 text-white rounded-br-none' 
                     : 'bg-white text-gray-800 border border-gray-200 rounded-bl-none'
                 } ${msg.isError ? 'bg-red-50 border-red-200 text-red-600' : ''}`}
               >
@@ -96,7 +89,7 @@ export const AiAssistant: React.FC = () => {
           {isLoading && (
             <div className="flex justify-start">
               <div className="bg-white text-gray-800 border border-gray-200 rounded-2xl rounded-bl-none px-4 py-2 shadow-sm flex items-center space-x-2">
-                <Loader2 className="w-4 h-4 animate-spin text-emerald-600" />
+                <Loader2 className="w-4 h-4 animate-spin text-red-800" />
                 <span className="text-xs text-gray-500">Thinking...</span>
               </div>
             </div>
@@ -112,13 +105,13 @@ export const AiAssistant: React.FC = () => {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyPress}
               placeholder="Ask about tours or research..."
-              className="w-full pl-4 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none text-sm"
+              className="w-full pl-4 pr-12 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none text-sm"
               rows={1}
             />
             <button
               onClick={handleSend}
               disabled={!input.trim() || isLoading}
-              className="absolute right-2 p-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="absolute right-2 p-2 bg-red-800 text-white rounded-lg hover:bg-red-900 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <Send className="w-4 h-4" />
             </button>
@@ -132,7 +125,7 @@ export const AiAssistant: React.FC = () => {
         className={`pointer-events-auto p-4 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center ${
           isOpen 
             ? 'bg-gray-100 text-gray-600 rotate-90' 
-            : 'bg-emerald-600 text-white hover:bg-emerald-700 hover:scale-105'
+            : 'bg-red-800 text-white hover:bg-red-900 hover:scale-105'
         }`}
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
