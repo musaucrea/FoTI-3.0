@@ -5,13 +5,12 @@ import { TourCard } from './components/TourCard';
 import { AiAssistant } from './components/AiAssistant';
 import { Logo } from './components/Logo';
 import { 
-  GraduationCap, 
-  Map as MapIcon, 
-  BookOpen, 
-  Users, 
-  Search, 
-  ArrowRight, 
-  PlayCircle, 
+  GraduationCap,
+  Map as MapIcon,
+  BookOpen,
+  Users,
+  ArrowRight,
+  PlayCircle,
   FileText,
   Briefcase,
   Globe,
@@ -24,7 +23,6 @@ import {
   CheckCircle,
   MessageSquare,
   DollarSign,
-  BarChart3,
   Plus,
   Settings,
   LogOut,
@@ -76,43 +74,62 @@ const App: React.FC = () => {
             >
               Explore Tours <ArrowRight className="ml-2 w-5 h-5" />
             </button>
-            <button 
-              onClick={() => handleNav('RESEARCH')}
+            <a
+              href="mailto:hello@foundationsoftourism.com"
               className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-full font-semibold transition-all flex items-center"
             >
-              Read Journal <BookOpen className="ml-2 w-5 h-5" />
-            </button>
+              hello@foundationsoftourism.com <Mail className="ml-2 w-5 h-5" />
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Model Explanation */}
+      {/* Stats */}
+      <section className="py-16 bg-red-950 text-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { stat: '50+', label: 'Tour Packages Created' },
+              { stat: '200+', label: 'Students Involved' },
+              { stat: '5+', label: 'Scholarships Given' },
+              { stat: '50+', label: 'Internships' },
+            ].map((item, i) => (
+              <div key={i}>
+                <div className="text-4xl md:text-5xl font-bold font-serif mb-2">{item.stat}</div>
+                <div className="text-red-200 text-sm font-medium uppercase tracking-wide">{item.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* The FoTI Model */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">The FoTI Model</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We replace the traditional waiting period of internships with concurrent business operations. 
+              We replace the traditional waiting period of internships with concurrent business operations.
               Here is how our students grow.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
-              { 
-                icon: <Briefcase className="w-8 h-8 text-red-800" />, 
-                title: "Business Operations", 
-                desc: "Students manage live tourism products under supervision, generating revenue to fund their studies." 
+              {
+                icon: <Briefcase className="w-8 h-8 text-red-800" />,
+                title: "Business Operations",
+                desc: "Students manage live tourism products under supervision."
               },
-              { 
-                icon: <TrendingUp className="w-8 h-8 text-sky-700" />, 
-                title: "Research & Development", 
-                desc: "Real-world data leads to documentary evidence and peer-reviewed publications in the FoTI Journal." 
+              {
+                icon: <TrendingUp className="w-8 h-8 text-sky-700" />,
+                title: "Research Output",
+                desc: "Field data becomes documentary evidence and publishable insight."
               },
-              { 
-                icon: <Award className="w-8 h-8 text-green-700" />, 
-                title: "Career Acceleration", 
-                desc: "Graduates transition to our 'Travel Agency for Hire' platform or join the FoTI Think Tank." 
+              {
+                icon: <Award className="w-8 h-8 text-green-700" />,
+                title: "Career Launch",
+                desc: "Graduates move into agency, research, and destination roles."
               }
             ].map((item, i) => (
               <div key={i} className="bg-slate-50 rounded-2xl p-8 border border-slate-100 hover:shadow-lg transition-shadow">
@@ -127,48 +144,27 @@ const App: React.FC = () => {
         </div>
       </section>
 
-      {/* Featured Tours Preview */}
-      <section className="py-20 bg-slate-50">
+      {/* Partners */}
+      <section className="py-16 bg-slate-50 border-t border-slate-100">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-2">Featured Student Tours</h2>
-              <p className="text-gray-500">Support student research by booking these unique experiences.</p>
-            </div>
-            <button onClick={() => handleNav('TOURS')} className="text-sky-700 font-semibold hover:text-sky-800 hidden md:flex items-center">
-              View All <ArrowRight className="w-4 h-4 ml-1" />
-            </button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TOURS.slice(0, 3).map(tour => (
-              <TourCard 
-                key={tour.id} 
-                tour={tour} 
-                student={getStudent(tour.studentId)}
-                onClick={() => { setSelectedTour(tour); setView('TOURS'); }} 
-              />
+          <p className="text-center text-sm font-bold uppercase tracking-widest text-gray-400 mb-10">Our Partners</p>
+          <div className="flex flex-wrap items-center justify-center gap-12">
+            {[
+              { name: 'Chuka University', href: 'https://www.chuka.ac.ke' },
+              { name: 'Nature Kenya', href: 'https://www.naturekenya.org' },
+              { name: 'Iris Labs', href: '#' },
+            ].map((partner) => (
+              <a
+                key={partner.name}
+                href={partner.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-red-800 font-semibold text-lg transition-colors tracking-tight"
+              >
+                {partner.name}
+              </a>
             ))}
           </div>
-          <div className="mt-8 text-center md:hidden">
-            <button onClick={() => handleNav('TOURS')} className="text-sky-700 font-semibold">View All Tours</button>
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action - Talent */}
-      <section className="py-20 bg-red-950 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 pattern-dots" /> 
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">Looking for Talent?</h2>
-          <p className="text-xl text-red-100 max-w-2xl mx-auto mb-10">
-            Our graduates are not just students; they are experienced entrepreneurs and published researchers.
-          </p>
-          <button 
-            onClick={() => handleNav('STUDENTS')}
-            className="bg-white text-red-900 px-8 py-3 rounded-full font-bold hover:bg-red-50 transition-colors"
-          >
-            Access Talent Pool
-          </button>
         </div>
       </section>
     </>
@@ -777,7 +773,7 @@ const App: React.FC = () => {
             {['Home', 'Tours', 'Journal', 'Students', 'Career Path'].map((item) => {
                 const target = item === 'Career Path' ? 'CAREERS' : item === 'Journal' ? 'RESEARCH' : item.toUpperCase() as ViewState;
                 return (
-                    <button 
+                    <button
                         key={item}
                         onClick={() => handleNav(target)}
                         className={`text-sm font-semibold transition-colors ${view === target ? 'text-red-800' : 'text-gray-600 hover:text-red-800'}`}
@@ -789,16 +785,21 @@ const App: React.FC = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-             <button className="p-2 text-gray-400 hover:text-red-800"><Search className="w-5 h-5" /></button>
-             {user ? (
+             <a
+                href="mailto:hello@foundationsoftourism.com"
+                className="bg-red-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-red-800 transition-colors flex items-center gap-2"
+             >
+                <Mail className="w-4 h-4" /> Partner with us
+             </a>
+             {user && (
                  <div className="flex items-center gap-3">
-                     <button 
+                     <button
                         onClick={() => handleNav('DASHBOARD')}
                         className="text-sm font-bold text-red-900 hover:underline"
                      >
                          Dashboard
                      </button>
-                     <button 
+                     <button
                         onClick={() => { setUser(null); setView('HOME'); }}
                         className="p-2 text-gray-500 hover:text-red-800"
                         title="Logout"
@@ -806,13 +807,6 @@ const App: React.FC = () => {
                          <LogOut className="w-5 h-5" />
                      </button>
                  </div>
-             ) : (
-                <button 
-                    onClick={() => handleNav('LOGIN')}
-                    className="bg-red-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-red-800 transition-colors"
-                >
-                    Login
-                </button>
              )}
           </div>
 
@@ -837,11 +831,12 @@ const App: React.FC = () => {
                             </button>
                          )
                     })}
-                    <div className="border-t border-gray-100 pt-2">
-                        {user ? (
+                    <div className="border-t border-gray-100 pt-2 space-y-2">
+                        <a href="mailto:hello@foundationsoftourism.com" className="text-left font-bold text-red-900 py-2 w-full flex items-center gap-2">
+                            <Mail className="w-4 h-4" /> Partner with us
+                        </a>
+                        {user && (
                             <button onClick={() => handleNav('DASHBOARD')} className="text-left font-bold text-red-900 py-2 w-full">Dashboard</button>
-                        ) : (
-                            <button onClick={() => handleNav('LOGIN')} className="text-left font-bold text-red-900 py-2 w-full">Login</button>
                         )}
                     </div>
                  </div>
@@ -895,7 +890,7 @@ const App: React.FC = () => {
                     <div>
                         <h4 className="text-white font-bold mb-4">Contact</h4>
                         <p className="text-sm text-red-200/80 mb-2">Nairobi, Kenya</p>
-                        <p className="text-sm text-red-200/80">info@foti.africa</p>
+                        <p className="text-sm text-red-200/80">hello@foundationsoftourism.com</p>
                     </div>
                 </div>
                 <div className="border-t border-red-900 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-red-300/60">
